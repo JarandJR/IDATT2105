@@ -1,0 +1,117 @@
+#header { grid-area: header; }
+#menu { grid-area: menu; }
+#main { grid-area: main; }
+#right { grid-area: right; }
+#footer { grid-area: footer; }
+
+.grid-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@media (min-width: 481px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+            'header header header header header header'
+            'menu main main main right right'
+            'menu footer footer footer footer footer';
+        gap: 10px;
+        background-color: darkred;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .grid-container > div {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+        background-image: url("resources/fiskeburger.png");
+        background-size: 100% 100%;
+    }
+
+    button {
+        font-size: 30px;
+        border-width: 7px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+            'header header header header header header'
+            'menu main main main right right'
+            'menu footer footer footer footer footer';
+        gap: 10px;
+        background-color: rebeccapurple;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .grid-container > div {
+        text-align: center;
+        padding: 10px 0;
+        font-size: 20px;
+        background-image: url("resources/fiskeburger.png");
+        background-size: 100% 100%;
+    }
+
+    button {
+        font-size: 15px;
+        border-width: 3px;
+    }
+}
+
+#title{
+    display: inline-block;
+    font-family: Poppins, serif;
+    text-align: center;
+    vertical-align:middle;
+    font-weight:900;
+    padding-left: 20px;
+}
+
+#logoImg {
+    vertical-align: middle;
+    float: left;
+}
+
+a {
+    color: cornflowerblue;
+}
+
+a:hover {
+    color: darkred;
+}
+
+#toggler {
+    width: 200px;
+    height: 50px;
+}
+
+button {
+    background-color: deeppink;
+    color: black;
+    border-color: darkred;
+}
+
+#increment, #decrement {
+    border: 10px dotted darkslateblue;
+}
+
+#footer {
+    background-color: black;
+    background-image: none;
+}
+
+p, h1 {
+    color: black;
+}
+
+#author {
+    color: white;
+}
