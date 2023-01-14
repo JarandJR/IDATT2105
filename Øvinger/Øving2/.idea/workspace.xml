@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="77a0183f-72e8-4a0f-922e-75df29387400" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Øving2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/src/components/CalculatorBtn.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/src/views/CalculatorView.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress/e2e/example.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress/fixtures/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress/support/commands.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/cypress/support/e2e.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/env.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/src/assets/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/assets/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/src/assets/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/TheWelcome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/src/components/Calculator.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/WelcomeItem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/__tests__/HelloWorld.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/icons/IconCommunity.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/icons/IconDocumentation.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/icons/IconEcosystem.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/icons/IconSupport.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/components/icons/IconTooling.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/router/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/stores/counter.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/views/AboutView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/src/views/HomeView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/tsconfig.config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/tsconfig.vitest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/vite.config.ts" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2KK9tcXDtp3YP3o7LUEwQ8CUQyO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jaran\Documents\NTNU\Fullstack\IDATT2105\Øvinger\Øving2\Calculator\src\views" />
+      <recent name="C:\Users\jaran\Documents\NTNU\Fullstack\IDATT2105\Øvinger\Øving2\Calculator\src\components" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="77a0183f-72e8-4a0f-922e-75df29387400" name="Changes" comment="" />
+      <created>1673712625683</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673712625683</updated>
+      <workItem from="1673712628955" duration="11647000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
