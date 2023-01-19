@@ -8,7 +8,7 @@
       <Calculator @add-logg="addLogg"/>
     </div>
     <div id="logg">
-      <Logger :logg="logg" />
+      <Logger :logg="logg"/>
     </div>
   </div>
 </template>
@@ -37,9 +37,17 @@ export default {
 </script>
 
 <style scoped>
-#info { grid-area: info; }
-#calc { grid-area: calc; }
-#logg { grid-area: logg; }
+#info {
+  grid-area: info;
+}
+
+#calc {
+  grid-area: calc;
+}
+
+#logg {
+  grid-area: logg;
+}
 
 #container {
   display: grid;
@@ -61,7 +69,7 @@ export default {
   top: 0;
   width: 100%;
   text-align: left;
-  font-family: "Agency FB",serif;
+  font-family: "Agency FB", serif;
   font-size: 30px;
 }
 
