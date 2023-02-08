@@ -25,7 +25,6 @@
 }
 
 nav {
-  color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -35,11 +34,12 @@ nav {
 }
 
 nav a:hover {
-  color: red;
+  color: lightskyblue;
 }
 
 nav a {
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 2%;
+  margin-right: 2%;
+  color: red;
 }
 </style>

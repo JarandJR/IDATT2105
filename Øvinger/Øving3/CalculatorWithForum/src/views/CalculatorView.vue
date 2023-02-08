@@ -14,16 +14,14 @@
 </template>
 
 <script>
-import Calculator from "../components/Calculator.vue";
-import Logger from "../components/Logger.vue";
-import NavBar from "../components/Navbar.vue";
+import Calculator from "../components/calculator/Calculator.vue";
+import Logger from "../components/calculator/Logger.vue";
 
 export default {
   name: "CalculatorView",
   components: {
     Calculator,
     Logger,
-    NavBar
   },
   data() {
     return {
