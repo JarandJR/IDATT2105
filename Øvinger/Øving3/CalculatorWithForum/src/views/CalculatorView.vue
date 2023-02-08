@@ -57,7 +57,7 @@ export default {
   background-color: darkslategrey;
   color: white;
   position: fixed;
-  top: 18.4%;
+  top: 130px;
   left: 0;
   right: 0;
   bottom: 0;

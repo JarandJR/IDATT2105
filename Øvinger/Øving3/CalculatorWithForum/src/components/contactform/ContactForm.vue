@@ -40,5 +40,38 @@ export default {
 </script>
 
 <style scoped>
+form {
+  font-family: "Agency FB", serif;
+}
 
+button {
+  width: 100%;
+  height: 30px;
+  font-size: 70%;
+  text-align: center;
+  background-color: limegreen;
+  min-width: 350px;
+  padding: 0 10px;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  font-size: 30px;
+  min-width: 350px;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 200px;
+  font-size: 20px;
+  min-width: 350px;
+}
+
+@media (max-width: 550px) {
+  form, input, textarea, button {
+    font-size: 20px;
+  }
+}
 </style>

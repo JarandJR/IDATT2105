@@ -17,10 +17,18 @@
   background-color: darkslategrey;
   color: white;
   position: fixed;
-  top: 18.4%;
+  top: 130px;
   left: 0;
   right: 0;
   bottom: 0;
-  font-size: 350%;
+  font-size: 100px;
+  font-family: "Agency FB", serif;
+  min-width: 350px;
+}
+
+@media (max-width: 650px) {
+  #container {
+    font-size: 50px;
+  }
 }
 </style>
