@@ -11,7 +11,7 @@
       </div>
       <div>
         <label>Message: </label>
-        <textarea placeholder="Message" v-model="message" name="message" v-on:keydown="validate" @click="validate" v-on:change="validate" v-on:keyup="validate"/>
+        <textarea placeholder="message" v-model="message" name="message" v-on:keydown="validate" @click="validate" v-on:change="validate" v-on:keyup="validate"/>
       </div>
       <div>
         <button  type="submit" disabled="disabled" ref="submitBtn">Submit</button>
@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import {useMailStore} from "../../store/mail";
+import {useNameStore} from "../../store/name";
+
 export default {
   name: "ContactForm.vue",
   data() {
@@ -32,24 +35,16 @@ export default {
   },
   methods: {
     submitForm() {
-      /*
-      * To do!
-      * fix state on mail and name
+      /* Todo!
       * mock json-server
       * unit test for calculator and form
       * scenario tests for contact form
-      * */
-      //this.$store.commit("SET_NAME",this.name);
-      //this.$store.commit("SET_EMAIL",this.mail);
-      //let counter = 0;
-      //console.log(counter);
-      //this.$store.commit("increment", counter);
-      //console.log(counter);
-
+      */
       const { name, mail, message } = this;
+      useMailStore().setMail(mail)
+      useNameStore().setName(name)
+
       console.log(name + " " + mail + " " + message);
-      //this.name = this.$store.name;
-      //this.mail = this.$store.mail;
     },
     validate() {
       this.$refs["submitBtn"].disabled = !(
@@ -69,6 +64,14 @@ export default {
     },
     isEmpty(str) {
       return !str || str.trim().length > 0;
+    }
+  },
+  created() {
+    if (useNameStore.name !== "") {
+      this.name = useNameStore().getName()
+    }
+    if (useMailStore().mail !== "") {
+      this.mail = useMailStore().getMail()
     }
   }
 }
