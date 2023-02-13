@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/contact-form">Contact form</RouterLink>
-      <RouterLink to="/calculator">Calculator</RouterLink>
+      <RouterLink id="routerHome" to="/">Home</RouterLink>
+      <RouterLink id="routerForm" to="/contact-form">Contact form</RouterLink>
+      <RouterLink id="routerCalc" to="/calculator">Calculator</RouterLink>
     </nav>
   </div>
   <RouterView />

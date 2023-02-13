@@ -1,0 +1,4 @@
+npm run mockapi #to run mock database
+npm run dev #to run application
+npm run test #to run test
+npx open cypress #to open e2e testing
