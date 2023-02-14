@@ -8,13 +8,13 @@ describe('form', () => {
     })
 
 
-    it('should find objects', ()=>{
+    it('Should render properly and find objects', ()=>{
         cy.get('form').should('be.visible')
         cy.get('input').should('be.of')
         cy.get('#submitBtn').should('be.disabled')
     })
 
-    it('should enable button correctly', ()=>{
+    it('Should enable submit button correctly', ()=>{
         cy.get('button').should('be.disabled')
         cy.get('#inputName').type("Ola Normann")
         cy.get('#inputMail').type('ola@normann.no')
@@ -22,15 +22,15 @@ describe('form', () => {
         cy.get('#submitBtn').should('be.enabled')
     })
 
-    it('should not enable button when input is not correct', ()=>{
+    it('Should not enable button when input is incorrect', ()=>{
         cy.get('button').should('be.disabled')
-        cy.get('#inputName').type("Ola")
+        cy.get('#inputName').type("Ola") // Needs to be a full name, not just ht e first name
         cy.get('#inputMail').type('ola@normann.no')
         cy.get('#inputMessage').type("message")
         cy.get('#submitBtn').should('be.disabled')
     })
 
-    it('message should be removed, and "name" and "mail" should be stored in state', ()=>{
+    it('Message should be removed, and "name" and "mail" should be stored in state when switching pages after submit', ()=>{
         cy.get('#inputName').type("Ola Normann")
         cy.get('#inputMail').type('ola@normann.no')
         cy.get('#inputMessage').type("message")
@@ -41,7 +41,7 @@ describe('form', () => {
         cy.get('#inputMessage').should("be.empty")
     })
 
-    it('should alert success upon correct data input', ()=>{
+    it('Should alert success upon pressing the submit button', ()=>{
         cy.get('#inputName').type("Ola Normann")
         cy.get('#inputMail').type('ola@normann.no')
         cy.get('#inputMessage').type("message")

@@ -12,7 +12,7 @@ describe('calculator', () => {
         cy.get('#five').should('have.text', '5')
     })
 
-    it('adds two numbers',() =>{
+    it('Add two numbers',() =>{
         cy.get('#three').should('have.text','3').click();
         cy.get('button:contains("+")').click();
         cy.get('#two').click();
@@ -21,7 +21,7 @@ describe('calculator', () => {
     })
 
 
-    it('subtracts two numbers',() =>{
+    it('Subtracts two numbers',() =>{
         cy.get('#nine').click();
         cy.get('button:contains("-")').click();
         cy.get('#three').click();
@@ -29,12 +29,12 @@ describe('calculator', () => {
         cy.get('#display').should('have.text', '6');
     })
 
-    it('should not get wrong output',() =>{
+    it('Should not get output',() =>{
         cy.get('#eight').click();
         cy.get('#multiply').click();
         cy.get('#seven').click();
         cy.get('button:contains("=")').click();
-        cy.get('#display').should('not.have.text', '60');
+        cy.get('#display').should('not.have.text', '57');
     })
 
 })
