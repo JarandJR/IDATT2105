@@ -71,16 +71,14 @@ export default {
       return !str || str.trim().length > 0;
     }
   },
-  created() {
-    this.name = useFormStore().getName()
-    this.mail = useFormStore().getMail()
-  }
+
 }
 </script>
 
 <style scoped>
 form {
   font-family: "Agency FB", serif;
+  font-size: 50px;
 }
 
 button {
@@ -110,6 +108,10 @@ textarea {
   height: 100px;
   font-size: 20px;
   min-width: 350px;
+}
+
+#container {
+  overflow-y: scroll;
 }
 
 @media (max-width: 550px) {
