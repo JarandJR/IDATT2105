@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {useFormStore} from "../../store/form";
+import {useFormStore} from "@/store/form";
 import axios from "axios";
 
 export default {
@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     async submitForm() {
-      console.log("Before")
       this.getData()
 
       const response = await useFormStore().submit(this.name, this.mail, this.message)
@@ -44,7 +43,6 @@ export default {
       }
       console.log(response)
 
-      console.log("After")
       this.getData()
     },
     async getData() {
@@ -71,7 +69,11 @@ export default {
       return !str || str.trim().length > 0;
     }
   },
-
+  created() {
+    const store = useFormStore();
+    this.name = store.getName();
+    this.mail = store.getMail();
+  }
 }
 </script>
 
