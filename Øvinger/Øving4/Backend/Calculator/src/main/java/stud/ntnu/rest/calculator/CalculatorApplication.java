@@ -1,13 +1,13 @@
-package stud.ntnu.backend.calculator;
+package stud.ntnu.rest.calculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CalculatorBackend {
+public class CalculatorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CalculatorBackend.class, args);
+        SpringApplication.run(CalculatorApplication.class, args);
     }
 
 }

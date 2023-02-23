@@ -1,10 +1,10 @@
-package stud.ntnu.backend.calculator;
+package stud.ntnu.rest.calculator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TestApplicationTests {
+class CalculatorApplicationTests {
 
     @Test
     void contextLoads() {
