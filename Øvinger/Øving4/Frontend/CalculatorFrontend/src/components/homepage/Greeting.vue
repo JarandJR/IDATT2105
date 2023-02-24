@@ -19,6 +19,8 @@ async function testConnection(){
 
 <style scoped>
 .wrapper {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 2rem;
 }

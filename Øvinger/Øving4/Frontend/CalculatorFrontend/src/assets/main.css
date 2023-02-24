@@ -1,13 +1,5 @@
 @import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
 a,
 .routs {
   text-decoration: none;
@@ -16,22 +8,27 @@ a,
   transition: 0.4s;
 }
 
+button {
+  background-color: darkblue;
+  color: whitesmoke;
+  font-size: 1rem;
+  border-radius: 5rem;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: lightblue;
     border-radius: 5rem;
   }
-}
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+  button:hover {
+    background-color: lightseagreen;
+    color: darkblue;
+    cursor: pointer;
   }
 }
+
+body {
+  background-color: lightblue;
+}
+

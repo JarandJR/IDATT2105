@@ -18,14 +18,14 @@ import { RouterLink } from 'vue-router'
 header {
   line-height: 1.5;
   max-height: 100vh;
+  min-width: 265px;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
   text-align: center;
-  margin-top: 0;
-  background-color: darkviolet;
+  /*margin-top: 0;*/
+  background-color: lightseagreen;
 }
 
 nav a.router-link-exact-active {
@@ -40,9 +40,10 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   padding: 0 1rem;
+  font-size: 3rem;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 0px) {
   header {
     display: flex;
     place-items: center;
@@ -62,6 +63,18 @@ nav a {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  nav a{
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 435px) {
+  nav a{
+    font-size: 1rem;
   }
 }
 </style>
