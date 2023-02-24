@@ -3,15 +3,15 @@
     <form @submit.prevent="submitForm">
       <div>
         <label>Full name: </label>
-        <input id="inputName" type="text" placeholder="Name" v-model="name" name="name" v-on:keydown="validate" v-on:change="validate" v-on:keyup="validate">
+        <input id="inputName" type="text" placeholder="Name" v-model="name" v-on:keyup="validate">
       </div>
       <div>
         <label>E-mail: </label>
-        <input id="inputMail" type="text" placeholder="E-mail" v-model="mail" name="mail" v-on:keydown="validate()" v-on:change="validate" v-on:keyup="validate">
+        <input id="inputMail" type="text" placeholder="E-mail" v-model="mail" v-on:keyup="validate">
       </div>
       <div>
         <label>Message: </label>
-        <textarea id="inputMessage" placeholder="message" v-model="message" name="message" v-on:keydown="validate" @click="validate" v-on:change="validate" v-on:keyup="validate"/>
+        <textarea id="inputMessage" placeholder="message" v-model="message" v-on:keyup="validate"/>
       </div>
       <div class="wrapper">
         <button  id="submitBtn" type="submit" disabled="disabled" ref="submitBtn">Submit</button>
@@ -22,9 +22,13 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
+import {useFormStore} from "@/stores/form";
+import {$ref} from "vue/macros";
 
-const name = ref("")
-const mail = ref("")
+const store = useFormStore();
+
+const name = ref(store.name)
+const mail = ref(store.mail)
 const message = ref("")
 
 async function submitForm() {
@@ -37,6 +41,9 @@ async function submitForm() {
 }
 
 function validate() {
+  store.name = name.value;
+  store.mail = mail.value;
+  //$ref(["submitBtn"]).d
   /*this.$refs["submitBtn"].disabled = !(
       this.checkMail() &&
       this.checkName() &&

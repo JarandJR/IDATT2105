@@ -40,8 +40,10 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
+import {useCalcStore} from "@/stores/calc";
 
-const display = ref("0");
+const store = useCalcStore();
+const display = ref(store.display);
 
 function addInput(input:string) {
   if (display.value === "0") {
@@ -49,6 +51,7 @@ function addInput(input:string) {
   } else {
     display.value += input;
   }
+  store.display = display.value;
 }
 </script>
 
