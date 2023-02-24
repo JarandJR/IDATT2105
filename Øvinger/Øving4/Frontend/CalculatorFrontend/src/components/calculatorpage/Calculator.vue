@@ -4,7 +4,7 @@
 
     </div>
     <div class="row">
-      <p>{{display}}</p>
+      <p id="display">{{display}}</p>
     </div>
     <div class="row">
       <button>C</button>
