@@ -50,6 +50,9 @@ const previous = ref(store.previous);
 const ans = ref(store.ans);
 
 async function equals() {
+  //Todo fix bug: If u add an operator and then deletes it. if u add a new operator the number will be deleted
+  //Todo fix bug: It is possible to add an operator as the first input. '-' is the only correct operator
+  //Todo fix bug: When adding '-' as the first operator, it is possible to change it to another operator
   addPotentialMissingZeros();
   if (display.value.slice(-1) === " ")
     display.value = display.value.slice(0, -3);
@@ -84,7 +87,8 @@ function deleteLastInput() {
 }
 
 function lastAnswer() {
-  addInput(ans.value);
+  if (ans.value !== "")
+    addInput(ans.value);
   setState();
 }
 

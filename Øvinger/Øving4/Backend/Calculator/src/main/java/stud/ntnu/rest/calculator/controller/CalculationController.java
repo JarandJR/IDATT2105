@@ -1,6 +1,5 @@
 package stud.ntnu.rest.calculator.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import stud.ntnu.rest.calculator.model.Equation;
