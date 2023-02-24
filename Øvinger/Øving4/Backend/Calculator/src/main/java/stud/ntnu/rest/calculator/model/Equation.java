@@ -5,15 +5,12 @@ import stud.ntnu.rest.calculator.asset.EquationSolver;
 
 public class Equation {
     private String equation;
-    private EquationSolver solver;
 
     public Equation(String equation) {
         this.equation = equation;
-        this.solver = new EquationSolver();
     }
 
     public Equation() {
-        this.solver = new EquationSolver();
     }
 
     public String getEquation() {
@@ -25,6 +22,6 @@ public class Equation {
     }
 
     public double solveSelf() {
-        return solver.solveEquation(equation);
+        return EquationSolver.solveEquation(equation);
     }
 }
