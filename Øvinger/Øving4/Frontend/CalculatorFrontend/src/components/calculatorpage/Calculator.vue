@@ -57,7 +57,6 @@ async function equals() {
 
   const postBody = {equation: display.value}
   const response = await axios.post("http://127.0.0.1:8080/calculate", postBody);
-  //Todo: Feature => emit data to logg, data = display.value + " = " + response.data
 
   emit('logCalculation', (display.value + " = " + response.data))
   ans.value = response.data;

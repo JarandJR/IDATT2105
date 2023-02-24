@@ -16,8 +16,6 @@ import {ref} from "vue";
 const calculationsLog = ref([]);
 
 function log(calculation: string) {
-  console.log(calculation)
-  //TOdo remove log
   calculationsLog.value.push(calculation)
 }
 </script>
