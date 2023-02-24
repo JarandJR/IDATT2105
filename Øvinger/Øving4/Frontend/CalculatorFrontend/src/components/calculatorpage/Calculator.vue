@@ -7,7 +7,7 @@
       <p id="display">{{display}}</p>
     </div>
     <div class="row">
-      <button @click="clear">C</button>
+      <button @click="clear('0')">C</button>
       <button @click="lastAnswer">ANS</button>
       <button @click="deleteLastInput">DEL</button>
       <button @click="addOperator('+')">+</button>
@@ -44,29 +44,29 @@ import {useCalcStore} from "@/stores/calc";
 import axios from "axios";
 
 const store = useCalcStore();
+const emit = defineEmits(['logCalculation'])
 
 const display = ref(store.display);
 const previous = ref(store.previous);
 const ans = ref(store.ans);
 
 async function equals() {
-  //Todo fix bug: If u add an operator and then deletes it. if u add a new operator the number will be deleted
-  //Todo fix bug: It is possible to add an operator as the first input. '-' is the only correct operator
-  //Todo fix bug: When adding '-' as the first operator, it is possible to change it to another operator
   addPotentialMissingZeros();
   if (display.value.slice(-1) === " ")
     display.value = display.value.slice(0, -3);
 
   const postBody = {equation: display.value}
   const response = await axios.post("http://127.0.0.1:8080/calculate", postBody);
-  //emit to logg display.value + " = " + response.data
+  //Todo: Feature => emit data to logg, data = display.value + " = " + response.data
+
+  emit('logCalculation', (display.value + " = " + response.data))
   ans.value = response.data;
-  clear();
+  clear(response.data);
   setState();
 }
 
-function clear() {
-  display.value = "0";
+function clear(current:string) {
+  display.value = current;
   previous.value = "";
   setState();
 }
@@ -77,8 +77,8 @@ function deleteLastInput() {
   if (lastChar === " ") {
     lastIndex *= 3;
   }
-  previous.value = display.value.slice(lastIndex);
   display.value = display.value.slice(0, lastIndex);
+  previous.value = display.value.slice(lastIndex);
 
   if (display.value === "") {
     display.value = "0"
@@ -93,12 +93,16 @@ function lastAnswer() {
 }
 
 function addOperator(input: string) {
+  if (display.value.trim().length === 1){
+    if (input !== "-")
+      return;
+  }
   addInput(' ' + input + ' ');
 }
 
 function addInput(input: string) {
-  if (previous.value === " + " || previous.value === " - " || previous.value === " * " || previous.value === " / ") {
-    if (input === " + " || input === " - " || input === " * " || input === " / "){
+  if (isOperator(previous.value.trim())) {
+    if (isOperator(input.trim())){
       display.value = display.value.slice(0, -3);
     } else if (input === ".") {
       return;
@@ -109,7 +113,7 @@ function addInput(input: string) {
 
   addInputToDisplay(input);
   if (input === '.' && validateCommas()) {
-    //alert("invalid use of '.'");
+    //Todo Feature: Add some way of alerting the user that they are doing something wrong
     deleteLastInput();
     return;
   }
@@ -117,20 +121,40 @@ function addInput(input: string) {
   setState();
 }
 
-function addPotentialMissingZeros() {
-  const inputs = display.value.split(' ');
 
+function addInputToDisplay(input: string) {
+  if (display.value === "0" && input !== ".") {
+    display.value = input;
+  } else {
+    display.value += input;
+  }
+}
+
+function setState() {
+  store.display = display.value;
+  store.previous = previous.value;
+}
+
+function addPotentialMissingZeros() {
+  const chars = display.value.split('');
   let temp = "";
-  for (const i in inputs) {
-    if (isOperator(inputs[i]))
-      temp += " " + inputs[i] + " ";
-    else
-      temp += inputs[i];
-    if (inputs[i].slice(-1) === '.'){
+
+  for (let i = 0; i < chars.length; i++) {
+    temp += chars[i];
+    if (chars[i] === '.'){
+      if (!isANumber(chars[i + 1]))
       temp += "0";
     }
   }
   display.value = temp;
+}
+
+function isANumber(s:string):boolean {
+  const numbers = ["0","1","2","3","4","5","6","7","8","9",]
+  for (const n in numbers)
+    if (s === numbers[n])
+      return true;
+  return false;
 }
 
 function isOperator(s:string):boolean {
@@ -160,19 +184,6 @@ function countNumberOfCommas(s:string) :number {
       numberOfCommas ++;
 
   return numberOfCommas;
-}
-
-function addInputToDisplay(input: string) {
-  if (display.value === "0" && input !== ".") {
-    display.value = input;
-  } else {
-    display.value += input;
-  }
-}
-
-function setState() {
-  store.display = display.value;
-  store.previous = previous.value;
 }
 </script>
 

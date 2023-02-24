@@ -1,17 +1,25 @@
 <template>
   <div class="wrapper">
     <div class="calc-container">
-      <Calculator/>
+      <Calculator @logCalculation = "log"/>
     </div>
     <div class="logg-container">
-      <CalculationLogg/>
+      <CalculationLogg :calculations="calculationsLog"/>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-
 import Calculator from "@/components/calculatorpage/Calculator.vue";
 import CalculationLogg from "@/components/calculatorpage/CalculationLogg.vue";
+import {ref} from "vue";
+
+const calculationsLog = ref([]);
+
+function log(calculation: string) {
+  console.log(calculation)
+  //TOdo remove log
+  calculationsLog.value.push(calculation)
+}
 </script>
 <style>
 .wrapper {
@@ -26,5 +34,11 @@ import CalculationLogg from "@/components/calculatorpage/CalculationLogg.vue";
 
 .logg-container {
   padding: 2rem;
+}
+
+@media (max-width: 750px) {
+  .wrapper {
+    flex-direction: column;
+  }
 }
 </style>
