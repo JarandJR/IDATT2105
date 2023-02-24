@@ -39,6 +39,8 @@ async function submitForm() {
   if (response/*.status*/ === 201) {
     alert("Success")
   }
+  message.value = "";
+  validate()
 }
 
 validate();
