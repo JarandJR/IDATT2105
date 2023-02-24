@@ -1,5 +1,9 @@
 @import './base.css';
 
+body {
+  min-width: 200px;
+}
+
 a,
 .routs {
   text-decoration: none;
