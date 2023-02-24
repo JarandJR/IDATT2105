@@ -1,6 +1,6 @@
 describe('Calculator tests', () => {
     beforeEach(()=>{
-        cy.visit('http://127.0.0.1:5173/calculator')
+        cy.visit('http://localhost:5173/calculator')
     })
 
     it('Finds objects', () => {

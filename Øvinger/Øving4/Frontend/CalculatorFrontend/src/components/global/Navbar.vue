@@ -2,9 +2,9 @@
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/calculator">Calculator</RouterLink>
-        <RouterLink to="/contact">Contact</RouterLink>
+        <RouterLink id="routerHome" to="/">Home</RouterLink>
+        <RouterLink id="routerCalc" to="/calculator">Calculator</RouterLink>
+        <RouterLink id="routerForm" to="/contact">Contact</RouterLink>
       </nav>
     </div>
   </header>

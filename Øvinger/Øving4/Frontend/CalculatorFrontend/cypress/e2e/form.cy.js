@@ -4,7 +4,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 describe('form', () => {
     beforeEach(()=>{
-        cy.visit('http://127.0.0.1:5173/contact')
+        cy.visit('http://localhost:5173/contact')
     })
 
     it('Should render properly and find objects', ()=>{
