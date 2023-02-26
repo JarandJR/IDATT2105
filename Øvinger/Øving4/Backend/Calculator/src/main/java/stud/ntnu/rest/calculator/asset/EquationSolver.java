@@ -1,17 +1,17 @@
-package stud.ntnu.rest.calculator.asset;
-
 public class EquationSolver {
 
     public static double solveEquation(String e) {
         String[] tokens = multiplyAndDivide(e);
-        return addAndSubtract(tokens);
+        if (tokens.length > 1 && tokens[1] != null)
+            return addAndSubtract(tokens);
+        return Double.parseDouble(tokens[0]);
     }
 
     private static String[] multiplyAndDivide(String e) {
         String[] tokens = e.split(" ");
         String[] temp = new String[tokens.length];
         int counter = 0;
-        boolean calced = false;
+        boolean calculated = false;
 
         for (int i = 0; i < tokens.length; i++) {
 
@@ -19,14 +19,14 @@ public class EquationSolver {
                 if (tokens[i].equals("*") || tokens[i].equals("/")){
                     double result = useOperator(tokens[i], Double.parseDouble(tokens[i - 1]), Double.parseDouble(tokens[i+1]));
 
-                    if (calced) {
+                    if (calculated) {
                         if (tokens[i].equals("*"))
                             temp[counter - 1] = String.valueOf(Double.parseDouble(temp[counter - 1]) * Double.parseDouble(tokens[i+1]));
                         else
                             temp[counter - 1] = String.valueOf(Double.parseDouble(temp[counter - 1]) / Double.parseDouble(tokens[i+1]));
                     }
                     else {
-                        calced = true;
+                        calculated = true;
                         temp[counter - 1] = String.valueOf(result);
                     }
                     i++;
