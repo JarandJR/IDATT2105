@@ -51,7 +51,6 @@ const previous = ref(store.previous);
 const ans = ref(store.ans);
 
 async function equals() {
-  addPotentialMissingZeros();
   if (display.value.slice(-1) === " ")
     display.value = display.value.slice(0, -3);
 
@@ -132,20 +131,6 @@ function addInputToDisplay(input: string) {
 function setState() {
   store.display = display.value;
   store.previous = previous.value;
-}
-
-function addPotentialMissingZeros() {
-  const chars = display.value.split('');
-  let temp = "";
-
-  for (let i = 0; i < chars.length; i++) {
-    temp += chars[i];
-    if (chars[i] === '.'){
-      if (!isANumber(chars[i + 1]))
-      temp += "0";
-    }
-  }
-  display.value = temp;
 }
 
 function isANumber(s:string):boolean {
