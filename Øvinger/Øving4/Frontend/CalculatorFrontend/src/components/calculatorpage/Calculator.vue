@@ -58,8 +58,9 @@ async function equals() {
   const postBody = {equation: display.value}
   const response = await axios.post("http://127.0.0.1:8080/calculate", postBody);
 
-  emit('logCalculation', (display.value + " = " + response.data))
-  ans.value = response.data;
+  const result = Math.round((response.data + Number.EPSILON) * 100) / 100;
+  emit('logCalculation', (display.value + " = " + result))
+  ans.value = result;
   clear(response.data);
   setState();
 }
