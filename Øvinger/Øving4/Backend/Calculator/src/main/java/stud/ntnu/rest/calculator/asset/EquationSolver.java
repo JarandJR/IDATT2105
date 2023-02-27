@@ -1,3 +1,5 @@
+package stud.ntnu.rest.calculator.asset;
+
 public class EquationSolver {
 
     public static double solveEquation(String e) {

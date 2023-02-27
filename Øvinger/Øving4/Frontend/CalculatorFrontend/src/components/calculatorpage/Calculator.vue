@@ -43,6 +43,9 @@ import {ref} from "vue";
 import {useCalcStore} from "@/stores/calc";
 import axios from "axios";
 
+//Todo bug: When a user has calculated a value, and then proceeds to calculate on the newly calculated value an error occurs.
+// The error makes it impossible to add an operator
+//Todo feature: It is atm impossible to multiply with -1 or any other negative number
 const store = useCalcStore();
 const emit = defineEmits(['logCalculation'])
 
@@ -59,7 +62,7 @@ async function equals() {
 
   const result = Math.round((response.data + Number.EPSILON) * 100) / 100;
   emit('logCalculation', (display.value + " = " + result))
-  ans.value = result;
+  ans.value = response.data;
   clear(response.data);
   setState();
 }
@@ -96,10 +99,6 @@ function addOperator(input: string) {
     if (input !== "-")
       return;
   }
-  addInput(' ' + input + ' ');
-}
-
-function addInput(input: string) {
   if (isOperator(previous.value.trim())) {
     if (isOperator(input.trim())){
       display.value = display.value.slice(0, -3);
@@ -107,6 +106,10 @@ function addInput(input: string) {
       return;
     }
   }
+  addInput(' ' + input + ' ');
+}
+
+function addInput(input: string) {
   if (previous.value === '.' && input === '.')
     return;
 
