@@ -63,7 +63,7 @@ async function equals() {
   const result = Math.round((response.data + Number.EPSILON) * 100) / 100;
   emit('logCalculation', (display.value + " = " + result))
   ans.value = response.data;
-  clear(response.data);
+  clear(response.data.toString());
   setState();
 }
 
@@ -97,7 +97,9 @@ function lastAnswer() {
 function addOperator(input: string) {
   if (display.value.trim().length === 1){
     if (input !== "-")
-      return;
+      if (isOperator(display.value.trim()) || display.value === "0") {
+        return;
+      }
   }
   if (isOperator(previous.value.trim())) {
     if (isOperator(input.trim())){
