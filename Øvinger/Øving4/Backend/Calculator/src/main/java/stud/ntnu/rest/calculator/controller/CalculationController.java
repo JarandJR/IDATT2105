@@ -14,12 +14,11 @@ public class CalculationController {
 
     @GetMapping("/")
     public String connect() {
-        return "Hello world";
+        return "Hello from the backend";
     }
 
    @PostMapping("/calculate")
     public double postCalculation(@RequestBody Equation equation) {
-        System.out.println(equation.getEquation());
         return service.solveEquation(equation);
     }
 }
