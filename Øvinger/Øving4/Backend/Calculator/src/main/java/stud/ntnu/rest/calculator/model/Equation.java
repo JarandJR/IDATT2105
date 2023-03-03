@@ -1,13 +1,24 @@
 package stud.ntnu.rest.calculator.model;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import stud.ntnu.rest.calculator.asset.EquationSolver;
 
+@Entity
 public class Equation {
-    private String equation;
 
-    public Equation(String equation) {
+    @Id
+    @GeneratedValue
+    private int id;
+    private String equation;
+    private double result;
+
+    public Equation(int id, String equation, double result) {
+        this.id = id;
         this.equation = equation;
+        this.result = result;
     }
 
     public Equation() {
@@ -21,7 +32,24 @@ public class Equation {
         this.equation = equation;
     }
 
+    public double getResult() {
+        return result;
+    }
+
+    public void setResult(double result) {
+        this.result = result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public double solveSelf() {
-        return EquationSolver.solveEquation(equation);
+        result = EquationSolver.solveEquation(equation);
+        return result;
     }
 }
