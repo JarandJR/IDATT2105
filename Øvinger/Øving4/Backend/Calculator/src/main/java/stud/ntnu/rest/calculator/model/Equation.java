@@ -1,10 +1,11 @@
 package stud.ntnu.rest.calculator.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.sql.Update;
 import stud.ntnu.rest.calculator.asset.EquationSolver;
+
+import java.util.Objects;
 
 @Entity
 public class Equation {
@@ -14,11 +15,15 @@ public class Equation {
     private int id;
     private String equation;
     private double result;
+    @ManyToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+    @JoinColumn(name = "user_username")
+    private User user;
 
-    public Equation(int id, String equation, double result) {
+    public Equation(int id, String equation, double result, User user) {
         this.id = id;
         this.equation = equation;
         this.result = result;
+        this.user = user;
     }
 
     public Equation() {
@@ -48,8 +53,34 @@ public class Equation {
         this.id = id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equation equation1 = (Equation) o;
+        return id == equation1.id && Double.compare(equation1.result, result) == 0 && Objects.equals(equation, equation1.equation) && Objects.equals(user, equation1.user);
+    }
+
+    public String getCompleteEquation() {
+        return equation + " = " + result;
+    }
+
     public double solveSelf() {
         result = EquationSolver.solveEquation(equation);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return  equation +
+                " = " + result;
     }
 }
