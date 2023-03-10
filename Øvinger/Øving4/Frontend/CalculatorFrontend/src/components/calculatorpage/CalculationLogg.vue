@@ -2,7 +2,7 @@
   <div class="container">
     <h2>Calculation-log:</h2>
     <ul>
-      <li v-for="c in props.calculations" :key="c">{{ c }}</li>
+      <li v-for="c in props.calculations" :key="c" @click="useCalculation(c)">{{ c }}</li>
     </ul>
   </div>
 </template>
@@ -12,6 +12,12 @@
 const props = defineProps({
   calculations: Array
 })
+const emit = defineEmits(['useCalc'])
+
+function useCalculation(c:String) {
+  const value = c.split("=")[0];
+  emit('useCalc', c.split("=")[0]);
+}
 </script>
 
 <style scoped>

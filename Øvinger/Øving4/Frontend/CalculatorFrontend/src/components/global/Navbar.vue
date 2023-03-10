@@ -2,9 +2,16 @@
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink id="routerHome" to="/">Home</RouterLink>
-        <RouterLink id="routerCalc" to="/calculator">Calculator</RouterLink>
-        <RouterLink id="routerForm" to="/contact">Contact</RouterLink>
+        <div class="left">
+          <RouterLink id="routerHome" to="/">Home</RouterLink>
+        </div>
+        <div class="center">
+          <RouterLink id="routerCalc" to="/calculator">Calculator</RouterLink>
+          <RouterLink id="routerForm" to="/contact">Contact</RouterLink>
+        </div>
+        <div class="right">
+          <RouterLink id="routerLogin" to="/login">Profile </RouterLink>
+        </div>
       </nav>
     </div>
   </header>
@@ -14,6 +21,27 @@
 </script>
 
 <style scoped>
+
+.left {
+  grid-area: left;
+  text-align: left;
+}
+.center {
+  grid-area: center;
+  text-align: center;
+}
+.right {
+  grid-area: right;
+  text-align: right;
+  margin-right: 2rem;
+}
+
+img {
+  border-radius: 7rem;
+  width: 4rem;
+  height: auto;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -21,9 +49,12 @@ header {
 }
 
 nav {
+  border: darkslateblue solid;
+  display: grid;
+  grid-template-areas:
+            'left center right';
+  gap: 10px;
   width: 100%;
-  text-align: center;
-  /*margin-top: 0;*/
   background-color: lightseagreen;
 }
 
@@ -65,13 +96,13 @@ nav a {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   nav a{
     font-size: 2rem;
   }
 }
 
-@media (max-width: 435px) {
+@media (max-width: 600px) {
   nav a{
     font-size: 1rem;
   }

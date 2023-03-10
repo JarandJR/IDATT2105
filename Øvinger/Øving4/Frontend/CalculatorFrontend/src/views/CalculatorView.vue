@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <div class="calc-container">
-      <Calculator @logCalculation = "log"/>
+      <Calculator @logCalculation = "log" :equation="calc"/>
     </div>
     <div class="logg-container">
-      <CalculationLogg :calculations="calculationsLog"/>
+      <CalculationLogg @useCalc="useCalculation" :calculations="calculationsLog"/>
     </div>
   </div>
 </template>
@@ -14,16 +14,25 @@ import CalculationLogg from "@/components/calculatorpage/CalculationLogg.vue";
 import {ref} from "vue";
 
 const calculationsLog = ref([]);
+const calc = ref("");
+
+function useCalculation(calculation:string) {
+  calc.value = calculation;
+}
 
 function log(calculation: string) {
   calculationsLog.value.push(calculation)
 }
 </script>
-<style>
+<style scoped>
 .wrapper {
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 2rem;
+  background-color: lightseagreen;
+  border: solid darkslateblue;
 }
 
 .calc-container {

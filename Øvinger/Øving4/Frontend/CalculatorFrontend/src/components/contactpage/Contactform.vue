@@ -72,6 +72,12 @@ function isEmpty(str:String) {
 
 </script>
 <style scoped>
+#container {
+  border: solid darkslateblue;
+  padding: 1rem;
+  background-color: lightseagreen;
+}
+
 form {
   font-size: 2rem;
 }

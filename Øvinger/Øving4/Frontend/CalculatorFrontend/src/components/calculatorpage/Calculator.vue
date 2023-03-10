@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="row">
-
     </div>
     <div class="row">
       <p id="display">{{display}}</p>
@@ -39,15 +38,23 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {useCalcStore} from "@/stores/calc";
 import axios from "axios";
+import {useUserStore} from "@/stores/user";
 
 //Todo bug: When a user has calculated a value, and then proceeds to calculate on the newly calculated value an error occurs.
 // The error makes it impossible to add an operator
 //Todo feature: It is atm impossible to multiply with -1 or any other negative number
 const store = useCalcStore();
+const userStore = useUserStore();
 const emit = defineEmits(['logCalculation'])
+
+const props = defineProps({
+  equation: String
+})
+const { equation } = props;
+
 
 const display = ref(store.display);
 const previous = ref(store.previous);
@@ -62,9 +69,46 @@ async function equals() {
 
   const result = Math.round((response.data + Number.EPSILON) * 100) / 100;
   emit('logCalculation', (display.value + " = " + result))
+  if (userStore.loggedIn) {
+    const postBody = {
+      equation: display.value,
+      result: result
+    };
+    await axios.post("http://127.0.0.1:8080/equation/" + userStore.username, postBody);
+  }
   ans.value = response.data;
   clear(response.data.toString());
   setState();
+}
+interface Equation {
+  id: number;
+  equation: string;
+  result: number;
+  user: any;
+  completeEquation: string;
+}
+
+async function loggList() {
+  if (userStore.loggedIn) {
+    const response = await axios.get("http://127.0.0.1:8080/red/equations/" + userStore.username);
+    const equations: Equation[] = response.data;
+    const results: number[] = equations.map((equation: Equation) => equation.result);
+    if (results.length > 0) {
+      for (let i = 0; i < results.length; i++) {
+        emit('logCalculation', `${equations[i].equation} = ${results[i]}`);
+      }
+    }
+  }
+}
+loggList();
+
+watch(() => props.equation, setProps);
+
+function setProps() {
+  if (props.equation !== "") {
+    display.value = props.equation
+    display.value = display.value.slice(0, -1);
+  }
 }
 
 function clear(current:string) {
