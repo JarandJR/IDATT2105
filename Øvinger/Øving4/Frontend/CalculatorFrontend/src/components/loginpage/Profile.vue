@@ -28,8 +28,10 @@ const props = defineProps({
 let equations = props.calculations;
 
 function logOut() {
-  store.username = "undefined";
+  store.username = "Login";
+  store.password = "";
   store.loggedIn = false;
+  store.jwtToken = null;
   emit("login");
 }
 </script>

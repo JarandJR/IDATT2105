@@ -74,7 +74,13 @@ async function equals() {
       equation: display.value,
       result: result
     };
-    await axios.post("http://127.0.0.1:8080/equation/" + userStore.username, postBody);
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        "Authorization" : "Bearer " + userStore.jwtToken
+      },
+    };
+    await axios.post("http://127.0.0.1:8080/equation/" + userStore.username, postBody, config);
   }
   ans.value = response.data;
   clear(response.data.toString());
@@ -90,7 +96,13 @@ interface Equation {
 
 async function loggList() {
   if (userStore.loggedIn) {
-    const response = await axios.get("http://127.0.0.1:8080/red/equations/" + userStore.username);
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        "Authorization" : "Bearer " + userStore.jwtToken
+      },
+    };
+    const response = await axios.get("http://127.0.0.1:8080/red/equations/" + userStore.username, config);
     const equations: Equation[] = response.data;
     const results: number[] = equations.map((equation: Equation) => equation.result);
     if (results.length > 0) {

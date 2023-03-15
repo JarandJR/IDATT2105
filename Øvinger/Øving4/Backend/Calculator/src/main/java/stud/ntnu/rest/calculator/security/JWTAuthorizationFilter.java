@@ -1,9 +1,24 @@
 package stud.ntnu.rest.calculator.security;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+import stud.ntnu.rest.calculator.service.UserService;
 
-public class JWTAuthorizationFilter {
+import java.io.IOException;
+import java.util.Collections;
+
+public class JWTAuthorizationFilter extends OncePerRequestFilter {
     public static final String USER = "USER";
     public static final String ROLE_USER = "ROLE_" + USER;
 
@@ -44,11 +59,11 @@ public class JWTAuthorizationFilter {
 
     public String validateTokenAndGetUserId(final String token) {
         try {
-            final Algorithm hmac512 = Algorithm.HMAC512(TokenController.keyStr);
+            final Algorithm hmac512 = Algorithm.HMAC512(UserService.keyStr);
             final JWTVerifier verifier = JWT.require(hmac512).build();
             return verifier.verify(token).getSubject();
         } catch (final JWTVerificationException verificationEx) {
-            LOGGER.warn("token is invalid: {}", verificationEx.getMessage());
+            System.out.println("Token is invalid");
             return null;
         }
     }

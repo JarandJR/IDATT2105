@@ -10,7 +10,7 @@
           <RouterLink id="routerForm" to="/contact">Contact</RouterLink>
         </div>
         <div class="right">
-          <RouterLink id="routerLogin" to="/login">Profile </RouterLink>
+          <RouterLink id="routerLogin" to="/login">{{loggedInStatus}} </RouterLink>
         </div>
       </nav>
     </div>
@@ -18,6 +18,21 @@
 </template>
 
 <script setup lang="ts">
+import {useUserStore} from "@/stores/user";
+import {ref, watch} from "vue";
+
+const store = useUserStore();
+watch(() => store.username, setProfile);
+
+const loggedInStatus = ref(store.username);
+
+function setProfile() {
+  if (store.username !== "Undefined") {
+    loggedInStatus.value = store.username;
+  } else {
+    loggedInStatus.value = "Login";
+  }
+}
 </script>
 
 <style scoped>

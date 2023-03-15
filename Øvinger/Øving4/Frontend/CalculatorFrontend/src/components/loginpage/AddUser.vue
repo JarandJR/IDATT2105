@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import Router from "@/router";
+import { useRouter } from 'vue-router';
 import {useUserStore} from "@/stores/user";
 import axios from "axios";
 
@@ -27,7 +27,7 @@ const username = ref("")
 const password = ref("")
 const store = useUserStore();
 const valid = ref(false);
-const router = Router;
+const router = useRouter();
 
 async function signUp() {
   const userObj = {
@@ -38,7 +38,7 @@ async function signUp() {
   if (response.status == 201){
     username.value = response.data.username;
     setState();
-    await router.push("/login")
+    await router.push("/login");
   }
 }
 

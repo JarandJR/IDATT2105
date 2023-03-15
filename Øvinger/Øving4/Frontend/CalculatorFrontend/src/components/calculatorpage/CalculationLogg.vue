@@ -15,7 +15,6 @@ const props = defineProps({
 const emit = defineEmits(['useCalc'])
 
 function useCalculation(c:String) {
-  const value = c.split("=")[0];
   emit('useCalc', c.split("=")[0]);
 }
 </script>

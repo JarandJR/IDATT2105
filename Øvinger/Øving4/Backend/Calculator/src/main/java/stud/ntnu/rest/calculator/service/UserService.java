@@ -1,5 +1,8 @@
 package stud.ntnu.rest.calculator.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import stud.ntnu.rest.calculator.model.Equation;
@@ -13,11 +16,16 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 
 @Service
 public class UserService {
+
+    public static final String keyStr = "testsecrettestsecrettestsecrettestsecrettestsecret";
+    private static final Duration JWT_TOKEN_VALIDITY = Duration.ofMinutes(5);
 
     @Autowired
     UserRepository userRepository;
@@ -107,7 +115,6 @@ public class UserService {
 
     public boolean login(String username, String password) {
         Optional<User> user = userRepository.findById(username);
-        System.out.println(username + "/ " + password);
         return user.map(value -> {
             try {
                 return Arrays.equals(value.getPassword(), hashPassword(password, user.get().getSalt()));
@@ -136,5 +143,24 @@ public class UserService {
     public void clearAllData() {
         equationsRepository.deleteAll();
         userRepository.deleteAll();
+    }
+
+    public String loginAndGetToken(String username, String password) {
+        if (login(username, password)) {
+            return generateToken(username);
+        }
+        return "Invalid";
+    }
+
+    public String generateToken(final String userId) {
+        final Instant now = Instant.now();
+        final Algorithm hmac512 = Algorithm.HMAC512(keyStr);;
+        final JWTVerifier verifier = JWT.require(hmac512).build();
+        return JWT.create()
+                .withSubject(userId)
+                .withIssuer("idatt2105_token_issuer_app")
+                .withIssuedAt(now)
+                .withExpiresAt(now.plusMillis(JWT_TOKEN_VALIDITY.toMillis()))
+                .sign(hmac512);
     }
 }

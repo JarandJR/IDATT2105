@@ -37,6 +37,11 @@ public class UserController {
         return service.login(user.getUsername(), user.getPassword());
     }
 
+    @PostMapping(value = "/login/token")
+    public String generateToken(final @RequestBody LoginRequest loginRequest) {
+        return service.loginAndGetToken(loginRequest.getUsername(), loginRequest.getPassword());
+    }
+
     @PostMapping("/equation/{username}")
     public List<Equation> postEquation(@PathVariable String username, @RequestBody Equation e) {
         return service.postEquation(username, e);

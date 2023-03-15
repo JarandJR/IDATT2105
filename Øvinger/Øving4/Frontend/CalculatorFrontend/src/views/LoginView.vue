@@ -16,26 +16,41 @@ import axios from "axios";
 const store = useUserStore();
 const loggedInStatus = ref(store.loggedIn);
 const username = ref(store.username);
-const calculationsLog = ref([]);
+const calculationsLog = ref<string[]>([]);
 
 async function update() {
   loggedInStatus.value = store.loggedIn;
   username.value = store.username;
-  calculationsLog.value = (await axios.get("http://127.0.0.1:8080/red/equations/" + username.value)).data;
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      "Authorization" : "Bearer " + store.jwtToken
+    },
+  };
+  calculationsLog.value = (await axios.get("http://127.0.0.1:8080/red/equations/" + username.value, config)).data;
   await loggList()
 }
 
 async function loggList() {
   if (store.loggedIn) {
-    const response = await axios.get("http://127.0.0.1:8080/red/equations/" + store.username);
-    const equations: Equation[] = response.data;
-    const results: number[] = equations.map((equation: Equation) => equation.result);
-    if (results.length > 0) {
-      for (let i = 0; i < results.length; i++) {
-        calculationsLog.value.push(`${equations[i].equation} = ${results[i]}`);
-      }
+    const response = await getUserInfo();
+    const data: Equation[] = response.data;
+    const equations: string[] = data.map((eq: Equation) => eq.equation);
+    const results: number[] = data.map((equation: Equation) => equation.result);
+    for (let i = 0; i < results.length; i++) {
+      calculationsLog.value.push(equations[i] + " = " + results[i]);
     }
   }
+}
+
+function getUserInfo() {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+      "Authorization" : "Bearer " + store.jwtToken
+    },
+  };
+  return axios.get("http://localhost:8080/red/equations/" + store.username, config);
 }
 loggList();
 

@@ -21,14 +21,10 @@
 import {useUserStore} from "../../stores/user";
 import {ref} from "vue";
 import Router from "@/router";
-import axios from "axios";
 
 const emit = defineEmits(['login'])
 const store = useUserStore();
 const router = Router;
-
-const loggedIn = ref(store.loggedIn);
-
 const username = ref("");
 const password = ref("");
 const valid = ref(false);
@@ -39,23 +35,9 @@ function newUser() {
 }
 
 async function login() {
-  const loginObj = {
-    username: username.value,
-    password: password.value
-  }
-  loggedIn.value = (await axios.post("http://127.0.0.1:8080/login", loginObj)).data;
-  if (loggedIn.value) {
-    setState();
-    emit("login");
-  } else {
-    alert("Error logging in");
-  }
-}
-
-function setState() {
-  if (loggedIn.value) {
-    store.loggedIn = loggedIn.value;
-    store.username = username.value;
+  await store.getTokenAndSaveInStore(username.value, password.value);
+  if(store.loggedIn) {
+    emit("login")
   }
 }
 

@@ -58,11 +58,6 @@ public class User {
         this.salt = salt;
     }
 
-    public void addEquation(Equation e) {
-        if (!equations.contains(e))
-                equations.add(e);
-    }
-
     public void removeEquation(Equation e) {
         equations.removeIf(eq -> eq.equals(e));
     }
@@ -73,14 +68,6 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(username, user.username) && Arrays.equals(password, user.password) && Arrays.equals(salt, user.salt) && Objects.equals(equations, user.equations);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(username, equations);
-        result = 31 * result + Arrays.hashCode(password);
-        result = 31 * result + Arrays.hashCode(salt);
-        return result;
     }
 
     @Override

@@ -1,37 +1,38 @@
-import { ref } from 'vue'
-import { defineStore } from 'pinia'
 import axios from "axios";
+import { defineStore } from "pinia";
 
-export const useUserStore = defineStore('user', () => {
-    const username = ref("Undefined");
-    const loggedIn = ref(false);
-    const jwtToken = ref("invalid");
-    const storage = sessionStorage;
-
-    async function getTokenAndSaveInStore(usernameData:string, password:string) {
-        try{
-            let response = await getJwtToken(usernameData, password);
-            console.log("Response: " + response);
-            let data = response.data;
-            console.log("Data: " + data);
-            if(data != null && data != '' && data != undefined){
-                jwtToken.value = data;
-                loggedIn.value = true;
-                username.value = usernameData;
+export const useUserStore = defineStore("user", {
+    state: () => ({
+        jwtToken: null,
+        loggedIn: false,
+        username: "Login",
+        password: "",
+    }),
+    persist: {
+        storage: sessionStorage,
+    },
+    actions: {
+        async getTokenAndSaveInStore(usernameData:string, password:string) {
+            try {
+                let response = await this.getJwtToken(usernameData, password);
+                let data = response.data;
+                if (data != null && data != '' && data != undefined) {
+                    this.jwtToken = data;
+                    this.loggedIn = true;
+                    this.username = usernameData;
+                    this.password = password;
+                }
+            } catch (err) {
+                console.log(err)
             }
-        } catch (err){
-            console.log(err)
+        },
+        getJwtToken(username:string, password:string) {
+            const config = {
+                headers: {
+                    "Content-type": "application/json",
+                },
+            };
+            return axios.post("http://localhost:8080/login/token", JSON.stringify({ username, password }), config);
         }
-    }
-
-    function getJwtToken(username:string, password:string) {
-        const config = {
-            headers: {
-                "Content-type": "application/json",
-            },
-        };
-        return axios.post("http://localhost:8080/login/token", JSON.stringify({ username, password }), config);
-    }
-
-    return { username, loggedIn, jwtToken, getTokenAndSaveInStore, storage}
-})
+    },
+});
