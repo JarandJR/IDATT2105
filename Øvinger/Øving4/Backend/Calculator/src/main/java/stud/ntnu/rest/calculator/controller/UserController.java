@@ -52,7 +52,7 @@ public class UserController {
         return service.deleteUser(username);
     }
 
-    @DeleteMapping("/delet/equation/{username}")
+    @DeleteMapping("/delete/equation/{username}")
     public User deleteEquation(@PathVariable String username, @RequestBody Equation e) {
         return service.removeEquation(username, e);
     }

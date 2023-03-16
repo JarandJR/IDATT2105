@@ -37,6 +37,8 @@ function newUser() {
 async function login() {
   await store.getTokenAndSaveInStore(username.value, password.value);
   if(store.loggedIn) {
+    username.value = "";
+    password.value = "";
     emit("login")
   }
 }

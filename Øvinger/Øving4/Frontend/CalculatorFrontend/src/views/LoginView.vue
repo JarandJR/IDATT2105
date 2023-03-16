@@ -9,14 +9,16 @@
 
 import Login from "../components/loginpage/Login.vue";
 import Profile from "../components/loginpage/Profile.vue";
-import {useUserStore} from "../stores/user";
-import {ref} from "vue";
+import {useUserStore} from "@/stores/user";
+import {ref, watch} from "vue";
 import axios from "axios";
 
 const store = useUserStore();
 const loggedInStatus = ref(store.loggedIn);
 const username = ref(store.username);
 const calculationsLog = ref<string[]>([]);
+
+watch(() => store.loggedIn, loggList);
 
 async function update() {
   loggedInStatus.value = store.loggedIn;
@@ -28,7 +30,6 @@ async function update() {
     },
   };
   calculationsLog.value = (await axios.get("http://127.0.0.1:8080/red/equations/" + username.value, config)).data;
-  await loggList()
 }
 
 async function loggList() {
